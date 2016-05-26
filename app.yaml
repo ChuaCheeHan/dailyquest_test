@@ -13,6 +13,9 @@ handlers:
 - url: /stylesheets
   static_dir: stylesheets
   
+  url: /home
+  script: main.application
+  
 - url: /prefs
   script: prefs.application
   login: required
