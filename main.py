@@ -31,5 +31,6 @@ class MainPage(webapp2.RequestHandler):
 		self.response.out.write(template.render(context))
 
 
-application = webapp2.WSGIApplication([('/', MainPage)],
+application = webapp2.WSGIApplication([('/', MainPage),
+                                       ('/home', MainPage)],
 									  debug=True)
