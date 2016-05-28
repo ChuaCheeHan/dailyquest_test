@@ -13,13 +13,22 @@ handlers:
 - url: /stylesheets
   static_dir: stylesheets
   
-  url: /home
-  script: main.application
-  
 - url: /prefs
   script: prefs.application
   login: required
 
+- url: /about
+  script: main.application
+  
+- url: /leaderboards
+  script: main.application
+
+- url: /home
+  script: main.application
+
+- url: /dqtoday
+  script: main.application
+  
 - url: .*
   script: main.application
 
