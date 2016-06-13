@@ -1,33 +1,82 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>The Time Is...</title>
-        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    	<link type="text/css" rel="stylesheet" href="../stylesheets/main.css">
-  </head>
-  <body>
-  {% if user %}
-    <p>
-      Welcome, {{ user.email() }}!
-      You can <a href="{{ logout_url }}">sign out</a>.
-    </p>
-  {% else %}
-    <p>
-      Welcome!
-      <a href="{{ login_url }}">Sign in or register</a> to customise.
-    </p>
-  {% endif %}
-    <p>The time is: {{current_time}}</p>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  {% if user %}
-    <form action="/prefs" method="post">
-      <label for="tz_offset">
-        Timezone offset from UTC (can be negative):
-      </label>
-      <input name="tz_offset" id="tz_offset" type="text"
-        size="4" value="{{ userprefs.tz_offset }}" />
-      <input type="submit" value="Set" />
-    </form>
-  {% endif %}
+    <title>Daily Quest</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../bootstrap/cover.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Cover</h3>
+              <nav class="nav nav-masthead">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Contact</a>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Cover your page.</h1>
+            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+
+            {% if user %}
+            <p class="lead">
+              <a href="/index" class="btn btn-lg btn-secondary">Welcome, {{ user.email() }}!</a>
+            </p>
+
+            <p class="lead">
+              <a href="{{ logout_url }}" class="btn btn-lg btn-secondary">You can sign out here.</a>   
+            </p>
+
+          {% else %}
+            <p class="lead">
+              <a href="{{ login_url }}" class="btn btn-lg btn-secondary">Sign in here!</a>  
+           
+          {% endif %}
+            
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../bootstrap/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-
