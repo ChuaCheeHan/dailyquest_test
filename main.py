@@ -30,6 +30,12 @@ class MainPage(webapp2.RequestHandler):
 		}
 		self.response.out.write(template.render(context))
 
+class Index(webapp2.RequestHandler):
+    """Incomplete"""
+    def get(self):
+        template = template_env.get_template('index.html')
+        self.response.out.write(template.render())
+		
 class About(webapp2.RequestHandler):
     """Incomplete"""
     def get(self):
@@ -66,6 +72,7 @@ class DQToday(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([('/', MainPage),
                                        ('/home', MainPage),
+									   ('/index', Index),
 									   ('/about', About),
 									   ('/leaderboards', Leaderboards),
 									   ('/dqtoday', DQToday)],

@@ -12,6 +12,12 @@ handlers:
 
 - url: /stylesheets
   static_dir: stylesheets
+
+- url: /js
+  static_dir: js
+  
+- url: /images
+  static_dir: images 
   
 - url: /prefs
   script: prefs.application
@@ -24,6 +30,9 @@ handlers:
   script: main.application
 
 - url: /home
+  script: main.application
+
+- url: /index
   script: main.application
 
 - url: /dqtoday
