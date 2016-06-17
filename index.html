@@ -35,7 +35,7 @@
                 </button>
                 <a class="navbar-brand" href="/home">Daily Quest</a>
             </div>
-            <!-- Top Menu Items (Don't know how to get the dropdown to work) -->
+            <!-- Top Menu Items  -->
             <ul class="nav navbar-right top-nav">
                     
                 <li class="dropdown">				
@@ -46,14 +46,11 @@
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="{{ logout_url }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
 					{% else %}
@@ -69,7 +66,6 @@
                     </li>
 
                     <li>
-										<!-- Don't really understand the js -->
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
@@ -82,9 +78,6 @@
                     </li>
                     <li>
                         <a href="/leaderboards"><i class="fa fa-fw fa-file"></i>Leaderboards</a>
-                    </li>
-                    <li>
-                        <a href="/about"><i class="fa fa-fw fa-about"></i>About</a>
                     </li>
                 </ul>
             </div>

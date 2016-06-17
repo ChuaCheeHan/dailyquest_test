@@ -28,26 +28,25 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
+              <h3 class="masthead-brand">Daily Quest</h3>
               <nav class="nav nav-masthead">
                 <a class="nav-link active" href="#">Home</a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="/about">About</a>
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Cover your page.</h1>
+            <h1 class="cover-heading">Generate your task today</h1>
             <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
 
             {% if user %}
             <p class="lead">
-              <a href="/index" class="btn btn-lg btn-secondary">Welcome, {{ user.email() }}!</a>
+              <a href="/index" class="btn btn-lg btn-secondary">Proceed to DQ</a>
             </p>
 
             <p class="lead">
-              <a href="{{ logout_url }}" class="btn btn-lg btn-secondary">You can sign out here.</a>   
+              <a href="{{ logout_url }}" class="btn btn-lg btn-secondary">Sign out</a>   
             </p>
 
           {% else %}
