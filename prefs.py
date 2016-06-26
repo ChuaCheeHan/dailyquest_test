@@ -23,7 +23,14 @@ class DataPage(webapp2.RequestHandler):
 		except ValueError:
 			#input wrong value
 			pass
+<<<<<<< HEAD
 		self.redirect('/')
 
 application = webapp2.WSGIApplication([('/prefs', PrefsPage)],
+=======
+		self.redirect('/addtask')
+
+application = webapp2.WSGIApplication([('/prefs', PrefsPage),
+                                        ('/datapage', DataPage)],
+>>>>>>> da63c2a702e7167543de9b8f55bdd281a373fe67
 	                                  debug=True)
