@@ -35,7 +35,7 @@
                 </button>
                 <a class="navbar-brand" href="/home">Daily Quest</a>
             </div>
-            <!-- Top Menu Items (Don't know how to get the dropdown to work) -->
+            <!-- Top Menu Items  -->
             <ul class="nav navbar-right top-nav">
                     
                 <li class="dropdown">				
@@ -44,9 +44,6 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -69,7 +66,6 @@
                     </li>
 
                     <li>
-					<!-- Don't really understand the js -->
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
@@ -83,7 +79,6 @@
                     <li>
                         <a href="/leaderboards"><i class="fa fa-fw fa-file"></i>Leaderboards</a>
                     </li>
-
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -97,7 +92,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome 
+                            Welcome <small>It is now: {{current_time}}</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
