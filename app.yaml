@@ -22,7 +22,11 @@ handlers:
 - url: /prefs
   script: prefs.application
   login: required
-
+  
+- url: /datapage
+  script: prefs.application
+  login: required
+  
 - url: /about
   script: main.application
   
@@ -38,6 +42,10 @@ handlers:
   login: required
 
 - url: /dqtoday
+  script: main.application
+  login: required
+
+- url: /addtask
   script: main.application
   login: required
   
