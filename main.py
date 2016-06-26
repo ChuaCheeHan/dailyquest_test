@@ -85,10 +85,30 @@ class DQToday(webapp2.RequestHandler):
 		}
 		self.response.out.write(template.render(context))		
 
+class addtask(webapp2.RequestHandler):
+    def get(self):
+		current_time = datetime.datetime.now()
+		user = users.get_current_user()
+		login_url = users.create_login_url(self.request.path)
+		logout_url = users.create_logout_url(self.request.path)
+
+		newdata = models.get_newdata()
+
+		template = template_env.get_template('addtask.html')
+		context = {
+			'current_time': current_time,
+			'user': user,
+			'login_url': login_url,
+			'logout_url': logout_url,
+			'newdata': newdata,
+		}
+		self.response.out.write(template.render(context))
+
 application = webapp2.WSGIApplication([('/', MainPage),
                                        ('/home', MainPage),
 									   ('/index', Index),
 									   ('/about', About),
 									   ('/leaderboards', Leaderboards),
-									   ('/dqtoday', DQToday)],
+									   ('/dqtoday', DQToday),
+									   ('/addtask', addtask)],
 									  debug=True)

@@ -40,6 +40,10 @@ handlers:
 - url: /dqtoday
   script: main.application
   login: required
+
+- url: /addtask
+  script: main.application
+  login: required
   
 - url: .*
   script: main.application
