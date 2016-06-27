@@ -19,7 +19,7 @@ def get_userprefs(user_id=None):
 	return userprefs
 
 class NewData(ndb.Model):
-	new_entry = ndb.StringProperty(default=None)
+	dataget = ndb.StringProperty(default=None)
 	user = ndb.UserProperty(auto_current_user_add=True)
 
 def get_newdata(user_id=None):
