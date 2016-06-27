@@ -110,6 +110,12 @@
                                     size="4" value="{{ newdata.dataget }}" />
                                   <input type="submit" value="Set" />
                                 </form>
+								{% for all in newdata.dataget %}
+							
+								{{all}}
+								
+								{% endfor %}
+								
                             </li>
                         </ol>
                     </div>
