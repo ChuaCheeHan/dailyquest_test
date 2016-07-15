@@ -24,7 +24,7 @@ handlers:
   login: required
   
 - url: /datapage
-  script: prefs.application
+  script: main.application
   login: required
   
 - url: /about

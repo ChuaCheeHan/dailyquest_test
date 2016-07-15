@@ -102,19 +102,77 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i>
+								<!--- Form --->
                                 <form action="/datapage" method="post">
                                   <label for="dataget">
                                     Please add your new quests here:
                                   </label>
+								  <!--- First box --->
+								  <li class="active">
+								  <label>
+								  1:
+								  </label>
                                   <input name="dataget" id="dataget" type="text"
                                     size="4" value="{{ newdata.dataget }}" />
+								  </li>
+								 <!--- End First Box --->
+								 
+								 <!---- Second Box --->
+								  <li class="active">
+								  <label>
+								  2:
+								  </label>
+								  <input name="dataget1" id="dataget1" type="text"
+                                    size="4" value="{{ newdata1.dataget }}" />
+								  </li>
+								  <!--- End Second Box ---> 
+								  
+								  <!-- Third Box--->
+								  <li class="active">
+								  <label>
+								  3:
+								  </label>
+								  <input name="dataget2" id="dataget2" type="text"
+                                    size="4" value="{{ newdata2.dataget }}" />
+								  </li>
+								  <!-- End Third Box-->
+
+								  <!-- Fourth Box--->
+								  <li class="active">
+								  <label>
+								  4:
+								  </label>
+								  <input name="dataget3" id="dataget3" type="text"
+                                    size="4" value="{{ newdata3.dataget }}" />
+								  </li>
+								  <!-- End Fourth Box-->	
+								  
+								  <!-- Fifth Box--->
+								  <li class="active">
+								  <label>
+								  5:
+								  </label>
+								  <input name="dataget4" id="dataget4" type="text"
+                                    size="4" value="{{ newdata4.dataget }}" />
+								  </li>
+								  <!-- End Fifth Box-->		
+								  
+								  <div>
                                   <input type="submit" value="Set" />
+								  </div>
+								  
                                 </form>
-								<!-- {% for all in newdata.dataget %}
-							
-								{{all}}
 								
-								{% endfor %} -->
+								<div>
+								<p></p>
+								<p>{{newdata.dataget}}</p>
+								<p>{{newdata1.dataget}}</p>
+								<p>{{newdata2.dataget}}</p>
+								<p>{{newdata3.dataget}}</p>
+								<p>{{newdata4.dataget}}</p>
+								</div>
+
+
 								
                             </li>
                         </ol>

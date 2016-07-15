@@ -13,18 +13,8 @@ class PrefsPage(webapp2.RequestHandler):
 			pass
 		self.redirect('/')
 
-class DataPage(webapp2.RequestHandler):
-	def post(self):
-		newdata = models.get_newdata()
-		try:
-			dataget = str(self.request.get('dataget'))
-			newdata.dataget = dataget
-			newdata.put()
-		except ValueError:
-			#input wrong value
-			pass
-		self.redirect('/addtask')
+
 
 application = webapp2.WSGIApplication([('/prefs', PrefsPage),
-                                        ('/datapage', DataPage)],
+                                        ],
 	                                  debug=True)

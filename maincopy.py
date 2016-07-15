@@ -89,7 +89,6 @@ class DQToday(webapp2.RequestHandler):
 class NewData(ndb.Model):
 	dataget = ndb.StringProperty(default=None)
 	user = ndb.UserProperty(auto_current_user_add=True)
-	dataget1 = ndb.StringProperty(default=None)
 
 def get_newdata(user_id=None):
 	if not user_id:
@@ -98,65 +97,12 @@ def get_newdata(user_id=None):
 			return None
 		user_id = user.user_id()
 
-	key = ndb.Key('NewData', user_id + 'a')
+	key = ndb.Key('NewData', user_id)
 	newdata = key.get()
 	if not newdata:
-		newdata = NewData(id=user_id + 'a')
+		newdata = NewData(id=user_id)
 	return newdata		
 
-def get_newdata_1(user_id=None):
-	if not user_id:
-		user = users.get_current_user()
-		if not user:
-			return None
-		user_id = user.user_id()
-
-	key = ndb.Key('NewData', user_id + 'b')
-	newdata1 = key.get()
-	if not newdata1:
-		newdata1 = NewData(id=user_id + 'b')
-	return newdata1	
-	
-def get_newdata_2(user_id=None):
-	if not user_id:
-		user = users.get_current_user()
-		if not user:
-			return None
-		user_id = user.user_id()
-
-	key = ndb.Key('NewData', user_id + 'c')
-	newdata2 = key.get()
-	if not newdata2:
-		newdata2 = NewData(id=user_id + 'c')
-	return newdata2	
-
-	
-def get_newdata_3(user_id=None):
-	if not user_id:
-		user = users.get_current_user()
-		if not user:
-			return None
-		user_id = user.user_id()
-
-	key = ndb.Key('NewData', user_id + 'd')
-	newdata3 = key.get()
-	if not newdata3:
-		newdata3 = NewData(id=user_id + 'd')
-	return newdata3	
-	
-def get_newdata_4(user_id=None):
-	if not user_id:
-		user = users.get_current_user()
-		if not user:
-			return None
-		user_id = user.user_id()
-
-	key = ndb.Key('NewData', user_id + 'e')
-	newdata4 = key.get()
-	if not newdata4:
-		newdata4 = NewData(id=user_id + 'e')
-	return newdata4	
-	
 class addtask(webapp2.RequestHandler):
     def get(self):
 		current_time = datetime.datetime.now()
@@ -165,10 +111,6 @@ class addtask(webapp2.RequestHandler):
 		logout_url = users.create_logout_url(self.request.path)
 
 		newdata = get_newdata()
-		newdata1 = get_newdata_1()
-		newdata2 = get_newdata_2()
-		newdata3 = get_newdata_3()
-		newdata4 = get_newdata_4()
 
 		template = template_env.get_template('addtask.html')
 		context = {
@@ -177,36 +119,16 @@ class addtask(webapp2.RequestHandler):
 			'login_url': login_url,
 			'logout_url': logout_url,
 			'newdata': newdata,
-			'newdata1': newdata1,
-			'newdata2': newdata2,
-			'newdata3': newdata3,
-			'newdata4': newdata4,
 		}
 		self.response.out.write(template.render(context))
 
 class DataPage(webapp2.RequestHandler):
 	def post(self):
 		newdata = get_newdata()
-		newdata1 = get_newdata_1()
-		newdata2 = get_newdata_2()
-		newdata3 = get_newdata_3()
-		newdata4 = get_newdata_4()
 		try:
 			dataget = self.request.get('dataget')
-			dataget1 = self.request.get('dataget1')
-			dataget2 = self.request.get('dataget2')
-			dataget3 = self.request.get('dataget3')
-			dataget4 = self.request.get('dataget4')
 			newdata.dataget = dataget
-			newdata1.dataget = dataget1
-			newdata2.dataget = dataget2
-			newdata3.dataget = dataget3
-			newdata4.dataget = dataget4
-			newdata1.put()
 			newdata.put()
-			newdata2.put()
-			newdata3.put()
-			newdata4.put()
 		except ValueError:
 			#input wrong value
 			pass
