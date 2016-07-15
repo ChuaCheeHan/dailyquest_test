@@ -17,9 +17,6 @@ class MainPage(webapp2.RequestHandler):
 		login_url = users.create_login_url(self.request.path)
 		logout_url = users.create_logout_url(self.request.path)
 
-		userprefs = models.get_userprefs()
-		if userprefs:
-			current_time += datetime.timedelta(0, 0, 0, 0, 0, userprefs.tz_offset)
 
 		template = template_env.get_template('home.html')
 		context = {
@@ -27,28 +24,34 @@ class MainPage(webapp2.RequestHandler):
 			'user': user,
 			'login_url': login_url,
 			'logout_url': logout_url,
-			'userprefs': userprefs,
 		}
 		self.response.out.write(template.render(context))
 
 class Index(webapp2.RequestHandler):
 	def get(self):
-		current_time = datetime.datetime.now()
+		current_time = datetime.datetime.today().isoweekday()
 		user = users.get_current_user()
 		login_url = users.create_login_url(self.request.path)
 		logout_url = users.create_logout_url(self.request.path)
 
-		userprefs = models.get_userprefs()
-		if userprefs:
-			current_time += datetime.timedelta(0, 0, 0, 0, 0, userprefs.tz_offset)
-
+		newdata = get_newdata()
+		newdata1 = get_newdata_1()
+		newdata2 = get_newdata_2()
+		newdata3 = get_newdata_3()
+		newdata4 = get_newdata_4()
+		
 		template = template_env.get_template('index.html')
 		context = {
 			'current_time': current_time,
 			'user': user,
 			'login_url': login_url,
 			'logout_url': logout_url,
-			'userprefs': userprefs,
+			'newdata':newdata,
+			'newdata1': newdata1,
+			'newdata2': newdata2,
+			'newdata3': newdata3,
+			'newdata4': newdata4,
+
 		}
 		self.response.out.write(template.render(context))
 		
@@ -90,6 +93,8 @@ class NewData(ndb.Model):
 	dataget = ndb.StringProperty(default=None)
 	user = ndb.UserProperty(auto_current_user_add=True)
 	dataget1 = ndb.StringProperty(default=None)
+
+
 
 def get_newdata(user_id=None):
 	if not user_id:
