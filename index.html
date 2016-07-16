@@ -96,7 +96,19 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Contents
+                                <i class="fa fa-dashboard"></i> 
+                                {% if current_time == 1 %}								
+								{{newdata.dataget}}
+                                {% elif current_time == 2 %}
+								{{newdata1.dataget}}
+								{% elif current_time == 3 %}								
+								{{newdata2.dataget}}
+                                {% elif current_time == 4 %}
+								{{newdata3.dataget}}
+								{% elif current_time == 5 %}
+								{{newdata4.dataget}}
+								
+							    {% endif %}
                             </li>
                         </ol>
                     </div>

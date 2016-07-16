@@ -18,19 +18,3 @@ def get_userprefs(user_id=None):
 		userprefs = UserPrefs(id=user_id)
 	return userprefs
 
-class NewData(ndb.Model):
-	dataget = ndb.StringProperty(default=None)
-	user = ndb.UserProperty(auto_current_user_add=True)
-
-def get_newdata(user_id=None):
-	if not user_id:
-		user = users.get_current_user()
-		if not user:
-			return None
-		user_id = user.user_id()
-
-	key = ndb.Key('NewData', user_id)
-	newdata = key.get()
-	if not newdata:
-		newdata = NewData(id=user_id)
-	return newdata
