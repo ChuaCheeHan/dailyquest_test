@@ -29,6 +29,7 @@ class MainPage(webapp2.RequestHandler):
 
 class Index(webapp2.RequestHandler):
 	def get(self):
+	    
 		current_time = datetime.datetime.today().isoweekday()
 		user = users.get_current_user()
 		login_url = users.create_login_url(self.request.path)
@@ -51,6 +52,7 @@ class Index(webapp2.RequestHandler):
 			'newdata2': newdata2,
 			'newdata3': newdata3,
 			'newdata4': newdata4,
+			
 
 		}
 		self.response.out.write(template.render(context))
@@ -77,22 +79,40 @@ class Leaderboards(webapp2.RequestHandler):
 
 class DQToday(webapp2.RequestHandler):
     def get(self):
+		current_time = datetime.datetime.today().isoweekday()
 		user = users.get_current_user()
 		login_url = users.create_login_url(self.request.path)
 		logout_url = users.create_logout_url(self.request.path)
 
+		newdata = get_newdata()
+		newdata1 = get_newdata_1()
+		newdata2 = get_newdata_2()
+		newdata3 = get_newdata_3()
+		newdata4 = get_newdata_4()
+		
+
 		template = template_env.get_template('dqtoday.html')
 		context = {
+			'current_time': current_time,
 			'user': user,
 			'login_url': login_url,
 			'logout_url': logout_url,
+			'newdata':newdata,
+			'newdata1': newdata1,
+			'newdata2': newdata2,
+			'newdata3': newdata3,
+			'newdata4': newdata4,
 		}
 		self.response.out.write(template.render(context))	
 		
 class NewData(ndb.Model):
 	dataget = ndb.StringProperty(default=None)
-	user = ndb.UserProperty(auto_current_user_add=True)
 	dataget1 = ndb.StringProperty(default=None)
+	dataget2 = ndb.StringProperty(default=None)
+	dataget3 = ndb.StringProperty(default=None)
+	dataget4 = ndb.StringProperty(default=None)
+	user = ndb.UserProperty(auto_current_user_add=True)
+
 
 
 
@@ -203,10 +223,10 @@ class DataPage(webapp2.RequestHandler):
 			dataget3 = self.request.get('dataget3')
 			dataget4 = self.request.get('dataget4')
 			newdata.dataget = dataget
-			newdata1.dataget = dataget1
-			newdata2.dataget = dataget2
-			newdata3.dataget = dataget3
-			newdata4.dataget = dataget4
+			newdata1.dataget1 = dataget1
+			newdata2.dataget2 = dataget2
+			newdata3.dataget3 = dataget3
+			newdata4.dataget4 = dataget4
 			newdata1.put()
 			newdata.put()
 			newdata2.put()
@@ -217,6 +237,35 @@ class DataPage(webapp2.RequestHandler):
 			pass
 		self.redirect('/addtask')
 
+class Delete2(webapp2.RequestHandler):
+    def post(self):
+		newdata2 = get_newdata_2()
+		newdata2.key.delete()
+		self.redirect('/dqtoday')
+
+class Delete(webapp2.RequestHandler):
+    def post(self):
+		newdata = get_newdata()
+		newdata.key.delete()
+		self.redirect('/dqtoday')
+		
+class Delete1(webapp2.RequestHandler):
+    def post(self):
+		newdata1 = get_newdata_1()
+		newdata1.key.delete()
+		self.redirect('/dqtoday')
+	    
+class Delete3(webapp2.RequestHandler):
+    def post(self):
+		newdata3 = get_newdata_3()
+		newdata3.key.delete()
+		self.redirect('/dqtoday')	
+	    
+class Delete4(webapp2.RequestHandler):
+    def post(self):
+		newdata1 = get_newdata_4()
+		newdata4.key.delete()
+		self.redirect('/dqtoday')
 
 application = webapp2.WSGIApplication([('/', MainPage),
                                        ('/home', MainPage),
@@ -225,5 +274,10 @@ application = webapp2.WSGIApplication([('/', MainPage),
 									   ('/leaderboards', Leaderboards),
 									   ('/dqtoday', DQToday),
 									   ('/addtask', addtask),
-									   ('/datapage', DataPage)],
+									   ('/datapage', DataPage),
+									   ('/delete2', Delete2),
+									   ('/delete1', Delete1),
+									   ('/delete3', Delete3),
+									   ('/delete4', Delete4),
+									   ('/delete', Delete)],
 									  debug=True)
