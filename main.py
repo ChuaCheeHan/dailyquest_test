@@ -77,6 +77,22 @@ class Leaderboards(webapp2.RequestHandler):
 		}
 		self.response.out.write(template.render(context))
 
+class Badges(webapp2.RequestHandler):
+    def get(self):
+		user = users.get_current_user()
+		login_url = users.create_login_url(self.request.path)
+		logout_url = users.create_logout_url(self.request.path)
+		experience = get_experience()
+
+		template = template_env.get_template('badges.html')
+		context = {
+			'user': user,
+			'login_url': login_url,
+			'logout_url': logout_url,
+			'experience': experience,
+		}
+		self.response.out.write(template.render(context))
+
 class DQToday(webapp2.RequestHandler):
     def get(self):
 		current_time = datetime.datetime.today().isoweekday()
@@ -111,10 +127,22 @@ class NewData(ndb.Model):
 	dataget2 = ndb.StringProperty(default=None)
 	dataget3 = ndb.StringProperty(default=None)
 	dataget4 = ndb.StringProperty(default=None)
+	experienceget = ndb.IntegerProperty(default=0)
 	user = ndb.UserProperty(auto_current_user_add=True)
 
 
+def get_experience(user_id=None):
+	if not user_id:
+		user = users.get_current_user()
+		if not user:
+			return None
+		user_id = user.user_id()
 
+	key = ndb.Key('NewData', user_id + 'z')
+	experience = key.get()
+	if not experience:
+		experience = NewData(id=user_id + 'z')
+	return experience		
 
 def get_newdata(user_id=None):
 	if not user_id:
@@ -272,6 +300,7 @@ application = webapp2.WSGIApplication([('/', MainPage),
 									   ('/index', Index),
 									   ('/about', About),
 									   ('/leaderboards', Leaderboards),
+									   ('/badges', Badges),
 									   ('/dqtoday', DQToday),
 									   ('/addtask', addtask),
 									   ('/datapage', DataPage),
