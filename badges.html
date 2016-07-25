@@ -35,7 +35,7 @@
                 </button>
                 <a class="navbar-brand" href="/home">Daily Quest</a>
             </div>
-            <!-- Top Menu Items  -->
+            <!-- Top Menu Items (Don't know how to get the dropdown to work) -->
             <ul class="nav navbar-right top-nav">
                     
                 <li class="dropdown">				
@@ -44,6 +44,9 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -61,24 +64,26 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="/dqtoday"><i class="fa fa-fw fa-dqtoday"></i> Today's Task</a>
                     </li>
 
-                    <li>
+                    <li class="active">
+					<!-- Don't really understand the js -->
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="/addtask">Add Task</a>
                             </li>
                             <li>
-                                <a href="/badges">Badges</a>
+                                <a href="/Badges">Badges</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="/leaderboards"><i class="fa fa-fw fa-file"></i>Leaderboards</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -92,50 +97,13 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome <small>It is now: 
-							{% if current_time == 1 %}								
-							Monday
-                            {% elif current_time == 2 %}
-							Tuesday
-							{% elif current_time == 3 %}								
-							Wednesday
-                            {% elif current_time == 4 %}
-						    Thursday
-							{% elif current_time == 5 %}
-							Friday
-							{% endif %}
-							</small>
+                            Badges 
                         </h1>
+                        <p>EXP: {{ experience.experienceget }}</p>
+						<p>Count: {{counter.count}}</p>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> 
-                                {% if current_time == 1 %}
-								{{newdata.dataget}}
-								<form action="/delete" method="post">
-								 <input type="submit" value="Complete" />
-								</form>
-                                {% elif current_time == 2 %}
-								{{newdata1.dataget1}}
-								<form action="/delete1" method="post">
-								 <input type="submit" value="Complete" />
-								</form>
-								{% elif current_time == 3 %}								
-								{{newdata2.dataget2}}
-								<form action="/delete2" method="post">
-								 <input type="submit" value="Complete" />
-								</form>
-                                {% elif current_time == 4 %}
-								{{newdata3.dataget3}}
-								<form action="/delete3" method="post">
-								 <input type="submit" value="Complete" />
-								</form>								
-								{% elif current_time == 5 %}
-								{{newdata4.dataget4}}
-								<form action="/delete4" method="post">
-								 <input type="submit" value="Complete" />
-								</form>								
-							    {% endif %}
-
+                                <i class="fa fa-dashboard"></i> Contents
                             </li>
                         </ol>
                     </div>

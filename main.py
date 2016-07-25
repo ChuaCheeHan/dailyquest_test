@@ -77,6 +77,24 @@ class Leaderboards(webapp2.RequestHandler):
 		}
 		self.response.out.write(template.render(context))
 
+class Badges(webapp2.RequestHandler):
+    def get(self):
+		user = users.get_current_user()
+		login_url = users.create_login_url(self.request.path)
+		logout_url = users.create_logout_url(self.request.path)
+		experience = get_experience()
+		counter = get_count()
+
+		template = template_env.get_template('badges.html')
+		context = {
+			'user': user,
+			'login_url': login_url,
+			'logout_url': logout_url,
+			'experience': experience,
+			'counter': counter,
+		}
+		self.response.out.write(template.render(context))
+
 class DQToday(webapp2.RequestHandler):
     def get(self):
 		current_time = datetime.datetime.today().isoweekday()
@@ -111,10 +129,38 @@ class NewData(ndb.Model):
 	dataget2 = ndb.StringProperty(default=None)
 	dataget3 = ndb.StringProperty(default=None)
 	dataget4 = ndb.StringProperty(default=None)
+	experienceget = ndb.IntegerProperty(default=0)
 	user = ndb.UserProperty(auto_current_user_add=True)
+	
+class Counter(ndb.Model):
+    count = ndb.IntegerProperty(default=0)
 
+	
+def get_count(user_id=None):
+	if not user_id:
+		user = users.get_current_user()
+		if not user:
+			return None
+		user_id = user.user_id()
 
+	key = ndb.Key('Counter', user_id)
+	counter = key.get()
+	if not counter:
+		counter = Counter(id=user_id)	
+	return counter
 
+def get_experience(user_id=None):
+	if not user_id:
+		user = users.get_current_user()
+		if not user:
+			return None
+		user_id = user.user_id()
+
+	key = ndb.Key('NewData', user_id + 'z')
+	experience = key.get()
+	if not experience:
+		experience = NewData(id=user_id + 'z')
+	return experience		
 
 def get_newdata(user_id=None):
 	if not user_id:
@@ -237,34 +283,51 @@ class DataPage(webapp2.RequestHandler):
 			pass
 		self.redirect('/addtask')
 
+		
 class Delete2(webapp2.RequestHandler):
     def post(self):
 		newdata2 = get_newdata_2()
+		counter = get_count()
 		newdata2.key.delete()
+		counter.count += 1
+		counter.put()
 		self.redirect('/dqtoday')
 
 class Delete(webapp2.RequestHandler):
     def post(self):
 		newdata = get_newdata()
+		counter = get_count()		
 		newdata.key.delete()
+		counter.count += 1
+		counter.put()		
 		self.redirect('/dqtoday')
 		
 class Delete1(webapp2.RequestHandler):
     def post(self):
+	
 		newdata1 = get_newdata_1()
+		counter = get_count()		
 		newdata1.key.delete()
+		counter.count += 1
+		counter.put()		
 		self.redirect('/dqtoday')
 	    
 class Delete3(webapp2.RequestHandler):
     def post(self):
 		newdata3 = get_newdata_3()
+		counter = get_count()
 		newdata3.key.delete()
+		counter.count += 1
+		counter.put()		
 		self.redirect('/dqtoday')	
 	    
 class Delete4(webapp2.RequestHandler):
     def post(self):
 		newdata1 = get_newdata_4()
+		counter = get_count()
 		newdata4.key.delete()
+		counter.count += 1
+		counter.put()		
 		self.redirect('/dqtoday')
 
 application = webapp2.WSGIApplication([('/', MainPage),
@@ -272,6 +335,7 @@ application = webapp2.WSGIApplication([('/', MainPage),
 									   ('/index', Index),
 									   ('/about', About),
 									   ('/leaderboards', Leaderboards),
+									   ('/badges', Badges),
 									   ('/dqtoday', DQToday),
 									   ('/addtask', addtask),
 									   ('/datapage', DataPage),
