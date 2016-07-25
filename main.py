@@ -82,7 +82,7 @@ class Badges(webapp2.RequestHandler):
 		user = users.get_current_user()
 		login_url = users.create_login_url(self.request.path)
 		logout_url = users.create_logout_url(self.request.path)
-		experience = get_experience()
+		
 		counter = get_count()
 
 		template = template_env.get_template('badges.html')
@@ -90,7 +90,7 @@ class Badges(webapp2.RequestHandler):
 			'user': user,
 			'login_url': login_url,
 			'logout_url': logout_url,
-			'experience': experience,
+			
 			'counter': counter,
 		}
 		self.response.out.write(template.render(context))
@@ -129,7 +129,6 @@ class NewData(ndb.Model):
 	dataget2 = ndb.StringProperty(default=None)
 	dataget3 = ndb.StringProperty(default=None)
 	dataget4 = ndb.StringProperty(default=None)
-	experienceget = ndb.IntegerProperty(default=0)
 	user = ndb.UserProperty(auto_current_user_add=True)
 	
 class Counter(ndb.Model):
@@ -148,19 +147,6 @@ def get_count(user_id=None):
 	if not counter:
 		counter = Counter(id=user_id)	
 	return counter
-
-def get_experience(user_id=None):
-	if not user_id:
-		user = users.get_current_user()
-		if not user:
-			return None
-		user_id = user.user_id()
-
-	key = ndb.Key('NewData', user_id + 'z')
-	experience = key.get()
-	if not experience:
-		experience = NewData(id=user_id + 'z')
-	return experience		
 
 def get_newdata(user_id=None):
 	if not user_id:

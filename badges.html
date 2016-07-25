@@ -14,8 +14,6 @@
     	<link type="text/css" rel="stylesheet" href="./stylesheets/main.css">
 		<!-- Custom Fonts -->
         <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<!-- Morris Charts CSS -->
-        <link href="./css/plugins/morris.css" rel="stylesheet">
 
   </head>
   
@@ -99,11 +97,25 @@
                         <h1 class="page-header">
                             Badges 
                         </h1>
-                        <p>EXP: {{ experience.experienceget }}</p>
-						<p>Count: {{counter.count}}</p>
+						<p>EXP: {{counter.count}}</p>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Contents
+                                <i class="fa fa-dashboard"></i> 
+								{% if  counter.count >= 1 and counter.count < 5  %}
+								<img src="images/Quest_Complete.png" id="badge1" class = "img-rounded" width="280" height="233"/>
+								{%elif counter.count >= 5 and counter.count <10 %}
+								<img src="images/Quest_Complete.png" class = "img-rounded" width="280" height="233"/>
+								<img src="images/CheckmarkMaster.png" class = "img-rounded" width="280" height="233"/>
+								{% elif counter.count >=10 and counter.count <20 %}
+								<img src="images/Quest_Complete.png" class = "img-rounded" width="280" height="233"/>
+								<img src="images/CheckmarkMaster.png" class = "img-rounded" width="280" height="233"/>
+								<img src="images/CheckboxBox.png" class = "img-rounded" width="280" height="233"/>
+								{% elif counter.count >=20 %}
+								<img src="images/Quest_Complete.png" class = "img-rounded" width="280" height="233"/>
+								<img src="images/CheckmarkMaster.png" class = "img-rounded" width="280" height="233"/>
+								<img src="images/CheckboxBox.png" class = "img-rounded" width="280" height="233"/>
+								<img src="images/20DayMark.png" class = "img-rounded" width="280" height="233"/>
+								{% endif %}
                             </li>
                         </ol>
                     </div>
