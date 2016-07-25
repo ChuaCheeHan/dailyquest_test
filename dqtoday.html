@@ -103,37 +103,44 @@
 						    Thursday
 							{% elif current_time == 5 %}
 							Friday
+							{% elif current_time == 6 or current_time ==7 %}
+							Closed
 							{% endif %}
 							</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> 
-                                {% if current_time == 1 %}
+                                {% if current_time == 1 and newdata.dataget != None %}
 								{{newdata.dataget}}
 								<form action="/delete" method="post">
 								 <input type="submit" value="Complete" />
 								</form>
-                                {% elif current_time == 2 %}
+                                {% elif current_time == 2 and newdata1.dataget1 != None %}
 								{{newdata1.dataget1}}
 								<form action="/delete1" method="post">
 								 <input type="submit" value="Complete" />
 								</form>
-								{% elif current_time == 3 %}								
+								{% elif current_time == 3 and newdata2.dataget2 != None %}								
 								{{newdata2.dataget2}}
 								<form action="/delete2" method="post">
 								 <input type="submit" value="Complete" />
 								</form>
-                                {% elif current_time == 4 %}
+                                {% elif current_time == 4 and newdata3.dataget3 != None %}
 								{{newdata3.dataget3}}
 								<form action="/delete3" method="post">
 								 <input type="submit" value="Complete" />
 								</form>								
-								{% elif current_time == 5 %}
+								{% elif current_time == 5 and newdata4.dataget4 != None %}
 								{{newdata4.dataget4}}
 								<form action="/delete4" method="post">
 								 <input type="submit" value="Complete" />
-								</form>								
+								</form>	
+								{% elif current_time == 6 or current_time == 7 %}
+								<p>It's the weekend, store's closed! Go out and play <i>Pokemon Go</i> or something.</p>
+								{%else%}
+								<p>Good job! You've either completed today's task, or you haven't set it yet.</p>
+								<p>Go think your life over, and add some new quests. Badges are waiting ;)</p>
 							    {% endif %}
 
                             </li>
