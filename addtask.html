@@ -40,18 +40,9 @@
                     
                 <li class="dropdown">               
                     {% if user %}
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.email() }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.email() }} , Click here to log out <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
+
                         <li>
                             <a href="{{ logout_url }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
@@ -110,10 +101,12 @@
 								  <!--- First box --->
 								  <li class="active">
 								  <label>
-								  1:
+								  Monday's Task:
 								  </label>
+								  <div>
                                   <input name="dataget" id="dataget" type="text"
                                     size="4" value="{{ newdata.dataget }}" />
+								  </div>
 
 								  </li>
 								 <!--- End First Box --->
@@ -121,10 +114,12 @@
 								 <!---- Second Box --->
 								  <li class="active">
 								  <label>
-								  2:
+								  Tuesday's Task:
 								  </label>
+								  <div>
 								  <input name="dataget1" id="dataget1" type="text"
                                     size="4" value="{{ newdata1.dataget1 }}" />
+								  </div>
 
 								  </li>
 								  <!--- End Second Box ---> 
@@ -132,10 +127,12 @@
 								  <!-- Third Box--->
 								  <li class="active">
 								  <label>
-								  3:
+								  Wednesday's Task:
 								  </label>
+								  <div>
 								  <input name="dataget2" id="dataget2" type="text"
                                     size="4" value="{{ newdata2.dataget2 }}" />
+								  </div>
 
 								  </li>
 								  <!-- End Third Box-->
@@ -143,10 +140,12 @@
 								  <!-- Fourth Box--->
 								  <li class="active">
 								  <label>
-								  4:
+								  Thursday's Task:
 								  </label>
+								  <div>
 								  <input name="dataget3" id="dataget3" type="text"
                                     size="4" value="{{ newdata3.dataget3 }}" />
+								  </div>
 
 								  </li>
 								  <!-- End Fourth Box-->	
@@ -154,28 +153,24 @@
 								  <!-- Fifth Box--->
 								  <li class="active">
 								  <label>
-								  5:
+								  Friday's Task:
 								  </label>
+								  <div>
 								  <input name="dataget4" id="dataget4" type="text"
                                     size="4" value="{{ newdata4.dataget4 }}" />
+								  </div>
 
 								  </li>
-								  <!-- End Fifth Box-->		
+								  <!-- End Fifth Box-->	
+                                  <div></div>
+								  
 								  
 								  <div>
-                                  <input type="submit" value="Set" />
+                                  <input type="submit" value="Confirm your tasks for the week" />
 								  </div>
 								  
                                 </form>
-								
-								<div>
-								<p></p>
-								<p>{{newdata.dataget}}</p>
-								<p>{{newdata1.dataget1}}</p>
-								<p>{{newdata2.dataget2}}</p>
-								<p>{{newdata3.dataget3}}</p>
-								<p>{{newdata4.dataget4}}</p>
-								</div>
+							
 
 
 								

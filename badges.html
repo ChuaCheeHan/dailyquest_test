@@ -14,6 +14,7 @@
     	<link type="text/css" rel="stylesheet" href="./stylesheets/main.css">
 		<!-- Custom Fonts -->
         <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		
 
   </head>
   
@@ -38,18 +39,9 @@
                     
                 <li class="dropdown">				
 					{% if user %}
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.email() }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.email() }} , Click here to log out <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
+
                         <li>
                             <a href="{{ logout_url }}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
@@ -68,7 +60,7 @@
 
                     <li class="active">
 					<!-- Don't really understand the js -->
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Personal Stuff<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="/addtask">Add Task</a>
@@ -100,9 +92,9 @@
 						<p>EXP: {{counter.count}}</p>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> 
-								{% if  counter.count >= 1 and counter.count < 5  %}
-								<img src="images/Quest_Complete.png" id="badge1" class = "img-rounded" width="280" height="233"/>
+                                <i class="fa fa-dashboard"></i> 							
+								{% if  counter.count >= 1 and counter.count < 5  %}	
+								<img src="images/Quest_Complete.png" class = "hover" width="280" height="233"/>
 								{%elif counter.count >= 5 and counter.count <10 %}
 								<img src="images/Quest_Complete.png" class = "img-rounded" width="280" height="233"/>
 								<img src="images/CheckmarkMaster.png" class = "img-rounded" width="280" height="233"/>
@@ -116,6 +108,9 @@
 								<img src="images/CheckboxBox.png" class = "img-rounded" width="280" height="233"/>
 								<img src="images/20DayMark.png" class = "img-rounded" width="280" height="233"/>
 								{% endif %}
+
+								
+								
                             </li>
                         </ol>
                     </div>
@@ -129,6 +124,8 @@
         <!-- /#page-wrapper -->
 
     </div>
+	
+	
     <!-- /#wrapper -->
 
     <!-- jQuery -->
